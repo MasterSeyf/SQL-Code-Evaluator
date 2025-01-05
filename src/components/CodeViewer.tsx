@@ -26,14 +26,13 @@ function codeStyler(doc: string): string {
   let lineNo = 1;
   doc = `<tr><td class="lineNumber">${lineNo++}</td><td class="codeLine">` + doc.replaceAll('\n', () => `</td></tr><tr><td class="lineNumber">${lineNo++}</td><td class="codeLine">`);
   doc += '</td></tr>';
-  doc += '<br><br><br><br><br><br><br><br><br><br>';
+  // doc += '<br><br><br><br><br><br><br><br><br><br>';
   doc = doc.replaceAll(/ (?= )/g, '&nbsp;');
   return doc;
 }
 
 function CodeViewer(props: CodeViewerProps): JSX.Element {
   const htmledCode = codeStyler(props.code);
-  console.warn(htmledCode);
 
   return (
     <div className="codeViewer">

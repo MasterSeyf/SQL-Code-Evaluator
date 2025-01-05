@@ -128,6 +128,7 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
   const [uiState, setUiState] = useState<TaskUiState>(new TaskUiState(undefined));
   const answerInputRef = useRef<HTMLTextAreaElement>(null);
   const [seeder, _setSeeder] = useState<Seeder>(new Seeder(props.seed));
+  const [enterUnlocked, setEnterUnlocked] = useState<boolean>(true);
 
   // Setzt die Kombination an Parameter für die nächste Aufgabe
   async function setParameter(state: TaskUiState) {
@@ -341,26 +342,36 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
   }
 
   function handlePageOnKeyDown(evt: KeyboardEvent) {
-    if (!uiState.started && evt.key === 'Enter' && evt.ctrlKey) {
-      setUiState((xState) => {
-        const state = new TaskUiState(xState);
-        state.joinVariant = tutorialJoinVariant[state.countTutorialTasks];
-        state.aliasVariant = tutorialPostfix[state.countTutorialTasks];
-        state.countTutorialTasks++;
-        state.buttonAnswerEnabled = true;
-        state.started = true;
+    if (enterUnlocked) {
+      if (!uiState.started && evt.key === 'Enter' && evt.ctrlKey) {
+        setEnterUnlocked(false);
+        setUiState((xState) => {
+          const state = new TaskUiState(xState);
+          state.joinVariant = tutorialJoinVariant[state.countTutorialTasks];
+          state.aliasVariant = tutorialPostfix[state.countTutorialTasks];
+          state.countTutorialTasks++;
+          state.buttonAnswerEnabled = true;
+          state.started = true;
 
-        state.title = titleGenerator(state, '(Pausiert)');
-        state.code = Introduction2.text;
-        state.code += translateVariants(state);
-        return state;
-      });
-    } else if (uiState.started && evt.key === 'Enter') {
-      if (evt.altKey) {
-        measurement.saveFile();
-      } else {
-        stepForward();
+          state.title = titleGenerator(state, '(Pausiert)');
+          state.code = Introduction2.text;
+          state.code += translateVariants(state);
+          return state;
+        });
+      } else if (uiState.started && evt.key === 'Enter') {
+        setEnterUnlocked(false);
+        if (evt.altKey) {
+          measurement.saveFile();
+        } else {
+          stepForward();
+        }
       }
+    }
+  }
+
+  function handlePageOnKeyUp(evt: KeyboardEvent) {
+    if (evt.key === 'Enter') {
+      setEnterUnlocked(true);
     }
   }
 
@@ -380,16 +391,30 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
     window.addEventListener('keydown', handlePageOnKeyDown);
     return () => window.removeEventListener('keydown', handlePageOnKeyDown);
   });
+  useEffect(() => {
+    window.addEventListener('keyup', handlePageOnKeyUp);
+    return () => window.removeEventListener('keyup', handlePageOnKeyUp);
+  });
 
   function handleTextKeyDown(evt: React.KeyboardEvent<HTMLTextAreaElement>): void {
     if (uiState.started && evt.key === 'Enter') {
+      setEnterUnlocked(false);
       if (evt.altKey) {
         measurement.saveFile();
       } else {
         evt.stopPropagation();
         evt.preventDefault();
-        stepForward();
+
+        if (enterUnlocked) {
+          stepForward();
+        }
       }
+    }
+  }
+
+  function handleTextKeyUp(evt: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (evt.key === 'Enter') {
+      setEnterUnlocked(true);
     }
   }
 
@@ -405,6 +430,7 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
           className={uiState.answerInputClassName}
           disabled={!uiState.started || uiState.finished || uiState.paused}
           onKeyDown={handleTextKeyDown}
+          onKeyUp={handleTextKeyUp}
         ></textarea>
         <button className="answerButton" disabled={!uiState.started} onClick={handleOnAnswerButtonClick}>
           {uiState.buttonText}
