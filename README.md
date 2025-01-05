@@ -1,4 +1,5 @@
-# Was fertig ist (15:58)
+# Features
+
 - Initiale Texteingabe von Name + Seed
 - Bunter text im Codeviewer (+ Einrückung!)
 - Texteingabe unten beim Codeviewer
@@ -12,3 +13,6 @@
 - Download durch ALT+ENTER
 - Style
 - More Style
+
+HTML Preview link:
+https://htmlpreview.github.io/?https://raw.githubusercontent.com/MasterSeyf/SQL-Code-Evaluator/master/dist/index.html
