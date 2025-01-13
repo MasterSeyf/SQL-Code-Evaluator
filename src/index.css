@@ -1,94 +1,95 @@
 :root {
-  /* Force light mode colors */
-  color-scheme: light;
-  background-color: #fff;
-  color: #000;
+    /* Force light mode colors */
+    color-scheme: light;
+    background-color: #fff;
+    color: #000;
 }
 
 .codeViewer {
-  font-family: 'Courier New', Courier, monospace;
-  color: black;
-  text-decoration: none;
-  font-size: small;
-  line-height: 1.2;
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-decoration: none;
+    font-size: small;
+    line-height: 1.2;
 }
 
 .codeViewer .keyword {
-  color: red;
+    color: red;
 }
 
 .codeViewer .relationAttribute {
-  color: blue;
+    color: blue;
 }
 
 .codeViewer .underline {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .codeViewer .bold {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .codeViewer .lineNumber {
-  background-color: lightgray;
-  padding-right: 0.25em;
-  padding-left: 0.25em;
-  text-align: right;
+    background-color: lightgray;
+    padding-right: 0.25em;
+    padding-left: 0.25em;
+    text-align: right;
 }
+
 .codeViewer .codeLine {
-  padding-left: 0.25em;
+    padding-left: 0.25em;
 }
 
 .taskManager {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .answerContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  color: black;
-  background-color: rgb(180, 206, 255);
-  border: 1px solid rgb(180, 206, 255);
-  margin-top: 2em;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    color: black;
+    background-color: rgb(180, 206, 255);
+    border: 1px solid rgb(180, 206, 255);
+    margin-top: 2em;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 #answerInput {
-  border: none;
-  height: 3em; /* Approximate height for 2 lines + padding */
-  box-sizing: border-box;
-  font-size: 1em;
-  resize: none;
-  background-color: white;
+    border: none;
+    height: 3em; /* Approximate height for 2 lines + padding */
+    box-sizing: border-box;
+    font-size: 1em;
+    resize: none;
+    background-color: white;
 }
 
 #answerInput.answerCorrect {
-  background-color: rgb(140, 255, 170);
+    background-color: rgb(140, 255, 170);
 }
 
 #answerInput.answerIncorrect {
-  background-color: rgb(255, 110, 80);
+    background-color: rgb(255, 110, 80);
 }
 
 .answerButton {
-  background-color: rgb(180, 206, 255);
-  border-color: rgb(180, 206, 255);
-  margin: 5px 10px 5px 10px;
+    background-color: rgb(180, 206, 255);
+    border-color: rgb(180, 206, 255);
+    margin: 5px 10px 5px 10px;
 }
 
 .answerButton:disabled {
-  background-color: darkgray;
-  color: lightgray;
-  border-color: lightgray;
+    background-color: darkgray;
+    color: lightgray;
+    border-color: lightgray;
 }
 
-.title{
-  margin-bottom : 10px !important;
-  font-size: 25px !important;
+.title {
+    margin-bottom: 10px !important;
+    font-size: 25px !important;
 }
