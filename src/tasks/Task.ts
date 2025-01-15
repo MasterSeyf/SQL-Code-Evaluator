@@ -45,7 +45,7 @@ export default class Task {
 
   // Setzt die Parameter für eine neue Aufgabe
   async initializeParameters() {
-    // Zum Debuggen können hier die Parameter frei gew�hlt werden
+    // Zum Debuggen können hier die Parameter frei gewählt werden
     if (debug) {
       this.countAttributes = 1; // -(1, ... , n): Anzahl der Attribute auf die bei jedem SELECT projiziert wird
       this.countConditions = 1; // -(1, ... , n): Anzahl der Bedingungen in jedem WHERE
@@ -66,7 +66,7 @@ export default class Task {
         this.countSubqueries = 1;
         this.countQueryDepth = 0;
       }
-      // Zweite (etwas schwerere) Stufe des Tutorials für die n�chsten 4 Aufgaben
+      // Zweite (etwas schwerere) Stufe des Tutorials für die nächsten 4 Aufgaben
       else if (this.tutorialCounter > 4) {
         this.countAttributes = 3;
         this.countConditions = 1;
@@ -130,7 +130,7 @@ export default class Task {
     console.log(this.query);
   }
 
-  // Der bisherige Query wird analysiert und in einer Bedingung verf�lscht
+  // Der bisherige Query wird analysiert und in einer Bedingung verfälscht
   async analyzeQuery() {
     console.log('________________________________________\nAnalysierter Query:');
     const qa = new QueryAnalyzer(this.seeder, this.query, this.filledPlaces, this.countQueryDepth, this.lineNumberCategory);

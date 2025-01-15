@@ -10,7 +10,7 @@ export function titleGenerator(params: ITitleParameters, suffix: string): string
 
   // Wenn alle Aufgaben erledigt wurden
   if (countTasks > maxTasks) {
-    return 'SQL Code Evaluator, ';
+    return 'SQL Code Evaluator';
   }
 
   // Variablen während des Experimentes

@@ -5,7 +5,11 @@ As part of my empirical study, test subjects will be presented with faulty SQL-C
 has to be found.
 The needed error localization time will be measured and analyzed.
 
-The test can be run in the browser.
+The test can be run in the browser via the link below. Estimated time for one completion is about 1 hour. After
+completion, sending me the
+generated CSV file is appreciated.
+
+E-Mail: Seyfullah.Davulcu@Stud.uni-due.de
 
 HTML-Preview link:
 https://htmlpreview.github.io/?https://raw.githubusercontent.com/MasterSeyf/SQL-Code-Evaluator/master/dist/index.html

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import Introduction1 from '../walloftext/Introduction1';
 import CodeViewer from './CodeViewer';
 import Measurement from '../tasks/Measurement';
+import Introduction1 from '../walloftext/Introduction1';
 import Introduction2 from '../walloftext/Introduction2';
+import Conclusion from '../walloftext/Conclusion';
 import { IVariantParameters, translateVariants } from '../walloftext/VariantTranslator';
 import { ITitleParameters, titleGenerator } from '../walloftext/Title';
 import Seeder from '../tasks/Seeder';
@@ -223,12 +224,7 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
         answer
       );
       state.title = titleGenerator(state, 'Experiment concluded');
-      state.code =
-        'Ihre Eingaben wurden verarbeitet und Ihre Evaluierung ist nun beendet. \n' +
-        'BITTE SCHLIEẞEN SIE DIESES FENSTER NOCH NICHT! \n' +
-        'Im letzten Schritt kann die .​csv-Datei mit den erhobenen Daten heruntergeladen werden. \n' +
-        'Bitte senden Sie mir diese zu. \n\n' +
-        '****Vielen Dank für ihre Partizipation!****';
+      state.code = Conclusion.text;
       if (answerInputRef.current) {
         answerInputRef.current.value = '';
       }
@@ -341,9 +337,10 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
     setUiState(state);
   }
 
+  // Im Einführungstext wird nur weitergesteppt, wenn man Steuerung-Enter (oder für macs Command-Enter) drückt
   function handlePageOnKeyDown(evt: KeyboardEvent) {
     if (enterUnlocked) {
-      if (!uiState.started && evt.key === 'Enter' && evt.ctrlKey) {
+      if (!uiState.started && evt.key === 'Enter' && (evt.ctrlKey || evt.metaKey)) {
         setEnterUnlocked(false);
         setUiState((xState) => {
           const state = new TaskUiState(xState);

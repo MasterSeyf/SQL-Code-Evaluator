@@ -43,6 +43,7 @@ export default class Seeder {
     return (await this.getRandomInt(bound)) + 1;
   }
 
+  // Erzeugt den nächsten boolischen Wert im angegebenen Seed
   async getRandomBoolean(): Promise<boolean> {
     return (await this.getRandomInt(2)) === 1;
   }
