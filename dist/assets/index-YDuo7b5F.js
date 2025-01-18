@@ -83,13 +83,14 @@ SELECT *
 FROM   Tabelle1
        JOIN
        Tabelle2
-       ON (Tabelle1.attribut = Tabelle2.attribut); 
+       ON (Tabelle1.attribut1 = Tabelle2.attribut2); 
 Diese Syntax wird hier bei manchen Aufgaben abgeändert und schaut wie folgt aus:
-____Prefix Verbundsbedingung:____
+____Infix Verbundsbedingung:____
 SELECT *
-FROM   ⋈ (Tabelle1.attribut = Tabelle2.attribut)
-       Tabelle1
-       Tabelle2;`,th=`
+FROM   Tabelle1
+       ⋈ (Tabelle1.attribut1 = Tabelle2.attribut2)
+       Tabelle2
+`,th=`
 
 Diese 2 Variationen bezüglich der Umbenennung als auch die 2 Variationen bezüglich des Verbundsoperators können in jeder Kombination auftreten.
 Daraus resultieren 4 mögliche Aufgabentypen, die Ihnen begegnen können.

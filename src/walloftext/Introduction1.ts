@@ -38,13 +38,13 @@ const code2: string =
   'FROM   Tabelle1\n' +
   '       JOIN\n' +
   '       Tabelle2\n' +
-  '       ON (Tabelle1.attribut = Tabelle2.attribut); \n' +
+  '       ON (Tabelle1.attribut1 = Tabelle2.attribut2); \n' +
   'Diese Syntax wird hier bei manchen Aufgaben abgeändert und schaut wie folgt aus:\n' +
-  '____Prefix Verbundsbedingung:____\n' +
+  '____Infix Verbundsbedingung:____\n' +
   'SELECT *\n' +
-  'FROM   ⋈ (Tabelle1.attribut = Tabelle2.attribut)\n' +
-  '       Tabelle1\n' +
-  '       Tabelle2;';
+  'FROM   Tabelle1\n' +
+  '       ⋈ (Tabelle1.attribut1 = Tabelle2.attribut2)\n' +
+  '       Tabelle2\n';
 const ausleitung: string =
   '\n' +
   '\nDiese 2 Variationen bezüglich der Umbenennung als auch die 2 Variationen bezüglich des Verbundsoperators können in jeder Kombination auftreten.' +
