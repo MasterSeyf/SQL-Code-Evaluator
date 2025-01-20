@@ -46,22 +46,21 @@ const code2: string =
   '       ⋈ (Tabelle1.attribut1 = Tabelle2.attribut2)\n' +
   '       Tabelle2\n';
 const ausleitung: string =
-  '\n' +
   '\nDiese 2 Variationen bezüglich der Umbenennung als auch die 2 Variationen bezüglich des Verbundsoperators können in jeder Kombination auftreten.' +
   '\nDaraus resultieren 4 mögliche Aufgabentypen, die Ihnen begegnen können.' +
   '\nWenn Ihnen SQL Code präsentiert wird, befindet sich immer genau 1 Syntaxfehler entweder in einer Verbunds- oder Selektionsbedingung.' +
   '\nIhre Aufgabe wird es sein, die Zeile in der sich dieser Syntaxfehler befindet zu erkennen, im unteren Eingabefeld aufzuschreiben und abzuschicken.' +
   '\nDamit Sie sich mit den verschiedenen Kombinationsmöglichkeiten vertraut machen, werden im Folgenden zunächst Übungsaufgaben präsentiert, bei denen Sie Feedback zu Ihren Lösungen erhalten.' +
   '\nBei einer richtigen Eingabe färbt sich das Abgabefeld Grün und es wird mit der nächsten Aufgabe fortgesetzt, während sich bei einer falschen Eingabe das Abgabefeld Rot färbt und Sie Ihre Eingabe korrigieren müssen, bis sie stimmt.' +
-  '\nNach dem Tutorial wird es kein Feedback mehr zu den Abgaben gegeben und somit werden auch fehlerhafte Antworten zum Fortsetzen mit der nächsten Aufgabe führen.' +
+  '\nNach dem Tutorial wird es kein Feedback mehr zu den Abgaben geben und somit werden auch fehlerhafte Antworten zum Fortsetzen mit der nächsten Aufgabe führen.' +
   '\nVor jeder Aufgabe wird Ihnen im Vorfeld genannt, um welche Variantenkombination es sich in der kommenden Aufgabe handeln wird.' +
   '\nNach jeder abgegebenen Lösung können Sie in der Zwischenübersicht eine Pause einlegen.' +
   '\nSchließen Sie allerdings auf keinen Fall dieses Fenster, ansonsten gehen die Fortschritte verloren.' +
-  '\nFalls Sie Fragen zu den Syntaxen oder zum weiteren Ablauf haben sollten so klären Sie diese bitte jetzt mit der Aufsichtsperson.' +
+  '\nFalls Sie Fragen zu den Syntaxen oder zum weiteren Ablauf haben sollten, so klären Sie diese bitte jetzt mit der Aufsichtsperson.' +
   '\nZum Verlassen dieser Hilfsübersicht drücken Sie bitte die Tastenkombination Strg + Enter oder Command + Enter.';
 
-const Introduction1: TaskDefinition = {
+const Introduction: TaskDefinition = {
   text: einleitung + änderung1 + code1 + änderung2 + code2 + ausleitung
 };
 
-export default Introduction1;
+export default Introduction;

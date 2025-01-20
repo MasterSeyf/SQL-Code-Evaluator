@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import CodeViewer from './CodeViewer';
 import Measurement from '../tasks/Measurement';
-import Introduction1 from '../walloftext/Introduction1';
-import Introduction2 from '../walloftext/Introduction2';
+import Introduction from '../walloftext/Introduction.ts';
+import PauseTextInitial from '../walloftext/PauseTextInitial.ts';
+import PauseTextDefault from '../walloftext/PauseTextDefault.ts';
+import PauseTextTutorialCompletion from '../walloftext/PauseTextTutorialCompletion.ts';
 import Conclusion from '../walloftext/Conclusion';
 import { IVariantParameters, translateVariants } from '../walloftext/VariantTranslator';
 import { ITitleParameters, titleGenerator } from '../walloftext/Title';
@@ -84,7 +86,7 @@ class TaskUiState implements IVariantParameters, ITitleParameters {
       this.isTask = x.isTask;
       this.finished = x.finished;
     } else {
-      this.code = Introduction1.text;
+      this.code = Introduction.text;
       this.title = document.title;
       this.buttonAnswerEnabled = false;
       this.answerInputClassName = '';
@@ -104,7 +106,7 @@ class TaskUiState implements IVariantParameters, ITitleParameters {
       this.leftSide = false;
       this.alias = false;
 
-      // Die Anzahl er Tutorial-Aufgaben ist ein Vielfaches der Kombinationen in zwei Wiederholungen: 4 · 2 = 8
+      // Die Anzahl der Tutorial-Aufgaben ist ein Vielfaches der Kombinationen in zwei Wiederholungen: 4 · 2 = 8
       const kombinationenTutorial = 4;
       const wiederholungenTutorial = 2;
       this.maxTutorialTasks = kombinationenTutorial * wiederholungenTutorial;
@@ -255,22 +257,11 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
 
         // Bei der allerersten Aufgabe nach dem Tutorial wird ein anderer Text angezeigt
         if (state.firstRealTask) {
-          state.code =
-            'Sie haben das Tutorial abgeschlossen. Nun startet das eigentliche Experiment. Ab jetzt wird kein Feedback mehr erfolgen. Viel Erfolg!\n' +
-            'Ihre Eingabe wurde verarbeitet und Ihre Evaluierung ist nun pausiert. \n' +
-            'Zum Fortführen der Aufgaben und der Zeitmessung drücken Sie bitte die Entertaste oder klicken auf den unteren Button. \n' +
-            'Nach jeder abgegebenen Lösung können Sie erneut eine Pause einlegen. \n\n' +
-            '____Kombinationen für die Varianten der kommenden Aufgabe:____ \n' +
-            translateVariants(state);
+          state.code = PauseTextTutorialCompletion.text + translateVariants(state);
           state.firstRealTask = false;
         } else {
           // Ansonsten der normale Text
-          state.code =
-            'Ihre Eingabe wurde verarbeitet und Ihre Evaluierung ist nun pausiert. \n' +
-            'Zum Fortführen der Aufgaben und der Zeitmessung drücken Sie bitte die Entertaste oder klicken auf den unteren Button. \n' +
-            'Nach jeder abgegebenen Lösung können Sie erneut eine Pause einlegen. \n\n' +
-            '____Kombinationen für die Varianten der kommenden Aufgabe:____ \n' +
-            translateVariants(state);
+          state.code = PauseTextDefault.text + translateVariants(state);
         }
         if (answerInputRef.current) {
           answerInputRef.current.value = '';
@@ -278,7 +269,7 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
         state.buttonText = 'Fortfahren (Enter)';
         state.isTask = false;
       } else {
-        //else if (!isTask)
+        // else if (!isTask)
         // Falls aktuell keine Aufgabe zu bearbeiten war, wird das Programm in den Aufgabenmodus geschaltet und hierfür ein neuer Query erzeugt
         state.paused = false;
         await createTask(state);
@@ -351,7 +342,7 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
           state.started = true;
 
           state.title = titleGenerator(state, '(Pausiert)');
-          state.code = Introduction2.text;
+          state.code = PauseTextInitial.text;
           state.code += translateVariants(state);
           return state;
         });
