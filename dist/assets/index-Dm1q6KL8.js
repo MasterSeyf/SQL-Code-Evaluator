@@ -54,7 +54,7 @@ Antwort: `+this.answer+`
 Zeit: `+this.time}}class Zd{constructor(t){v(this,"list",[]);v(this,"startingTime",0);v(this,"isTutorialDone",!1);v(this,"countTutorial",0);v(this,"countExperiment",0);v(this,"combinations",Array(12).fill(0));v(this,"fileName");this.fileName=t+".csv"}startTimer(){this.startingTime=new Date().getTime()}endTimer(t,n,r,i,l,u,s,o,a,y,d,m,g){g=g.trim();const w=new Date().getTime(),k=this.list.length;g.length===0&&(g="0");const R=new Jd(k+1,n,t,r,i,l,u,s,o,a,y,d,m,g,w-this.startingTime);this.list.push(R),console.log(this.list[k]),this.incrementCounts(t,r,+l,n)}incrementCounts(t,n,r,i){if(i&&this.countTutorial++,!i&&!this.isTutorialDone)this.countTutorial++,this.isTutorialDone=!0;else if(!i&&r!=0){const l=(t-2)*6+n/2*3+(r-1);this.countExperiment++,this.combinations[l]++}console.log("________________________________________"),console.log("Anzahl an bisher vorgekommenen Varianten:"),console.log("Tutorial:   "+this.countTutorial+"/8"),console.log("Experiment: "+this.countExperiment+"/96"),console.log("POST JOIN + PRE  Alias + 1. indexCategory: "+this.combinations[0]),console.log("POST JOIN + PRE  Alias + 2. indexCategory: "+this.combinations[1]),console.log("POST JOIN + PRE  Alias + 3. indexCategory: "+this.combinations[2]),console.log("POST JOIN + POST Alias + 1. indexCategory: "+this.combinations[3]),console.log("POST JOIN + POST Alias + 2. indexCategory: "+this.combinations[4]),console.log("POST JOIN + POST Alias + 3. indexCategory: "+this.combinations[5]),console.log("IN   JOIN + PRE  Alias + 1. indexCategory: "+this.combinations[6]),console.log("IN   JOIN + PRE  Alias + 2. indexCategory: "+this.combinations[7]),console.log("IN   JOIN + PRE  Alias + 3. indexCategory: "+this.combinations[8]),console.log("IN   JOIN + POST Alias + 1. indexCategory: "+this.combinations[9]),console.log("IN   JOIN + POST Alias + 2. indexCategory: "+this.combinations[10]),console.log("IN   JOIN + POST Alias + 3. indexCategory: "+this.combinations[11]),this.countExperiment===96&&(console.log("________________________________________"),console.log("Experiment abgeschlossen"))}getCombinations(){return this.combinations}saveFile(){let t=`Number;Tutorial;Join Variante;Alias Variante;Index;Index Category;Max Index;Line;Max Line;Depth;Max Depth;Links vom =;Links vom .;Answer;Time\r
 `;for(const l of this.list)t+=l.number+";"+l.tutorial+";"+l.joinVariant+";"+l.aliasVariant+";"+l.index+";"+l.indexCategory+";"+l.maxIndex+";"+l.lineNumber+";"+l.maxLineNumber+";"+l.depth+";"+l.maxDepth+";"+l.leftSide+";"+!l.alias+";"+l.answer+";"+l.time+`\r
 `;const n=new Blob([t],{type:"text/csv;charset=utf-8;"}),r=document.createElement("a"),i=URL.createObjectURL(n);r.setAttribute("href",i),r.setAttribute("download",this.fileName),document.body.appendChild(r),r.click(),document.body.removeChild(r),URL.revokeObjectURL(i)}}const Gd=`Dies ist ein Experiment zur Evaluation von verschiedenen Syntaxen bezüglich der Reihenfolge bzw. Platzierung von SQL Codekomponenten. 
-Vielen Dank, dass sie sich zur Teilnahme bereiterklärt haben. 
+Vielen Dank, dass Sie sich zur Teilnahme bereiterklärt haben. 
 Vergewissern Sie sich zunächst, dass alle 50 Zeilen sichtbar sind, entweder indem Sie beispielsweise die Menü- oder Lesezeichenleiste des Browsers ausblenden oder herauszoomen.
 Nun werden die hier vorkommenden verschiedenen Variationen der Syntax einer SQL Anfrage erläutert:`,Yd=`
 
@@ -89,7 +89,7 @@ ____Infix Verbundsbedingung:____
 SELECT *
 FROM   Tabelle1
        ⋈ (Tabelle1.attribut1 = Tabelle2.attribut2)
-       Tabelle2
+       Tabelle2;
 `,th=`
 Diese 2 Variationen bezüglich der Umbenennung als auch die 2 Variationen bezüglich des Verbundsoperators können in jeder Kombination auftreten.
 Daraus resultieren 4 mögliche Aufgabentypen, die Ihnen begegnen können.
@@ -121,9 +121,9 @@ Zum Fortführen der Aufgaben und der Zeitmessung drücken Sie bitte die Entertas
 Nach jeder abgegebenen Lösung können Sie erneut eine Pause einlegen. 
 
 ____Kombinationen für die Varianten der kommenden Aufgabe:____ 
-`},uh={text:`Ihre Eingaben wurden verarbeitet und Ihre Evaluierung ist nun beendet.
-BITTE SCHLIEẞEN SIE DIESES FENSTER NOCH NICHT!
-Im letzten Schritt muss die .​csv-Datei mit den erhobenen Daten heruntergeladen werden.
+`},uh={text:`BITTE SCHLIEẞEN SIE DIESES FENSTER NOCH NICHT!
+Ihre Eingaben wurden verarbeitet und Ihre Evaluierung ist nun beendet.
+Im letzten Schritt muss jetzt die generierte .​csv-Datei mit den erhobenen Daten heruntergeladen werden.
 Klicken Sie für diesen Download bitte auf den unteren Button oder betätigen Sie die Entertaste.
 Senden Sie mir diese Datei im Anschluss zu.
 Nachdem Sie die Datei heruntergeladen haben können Sie dieses Fenster schließen.

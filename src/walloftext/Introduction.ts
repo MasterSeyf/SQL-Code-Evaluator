@@ -3,7 +3,7 @@ import { TaskDefinition } from '../tasks/taskCommons';
 // Einfügen der Begrüßungsnachricht und Initialisierung des Programms im Pausenmodus
 const einleitung: string =
   'Dies ist ein Experiment zur Evaluation von verschiedenen Syntaxen bezüglich der Reihenfolge bzw. Platzierung von SQL Codekomponenten. \n' +
-  'Vielen Dank, dass sie sich zur Teilnahme bereiterklärt haben. \n' +
+  'Vielen Dank, dass Sie sich zur Teilnahme bereiterklärt haben. \n' +
   'Vergewissern Sie sich zunächst, dass alle 50 Zeilen sichtbar sind, entweder indem Sie beispielsweise die Menü- oder Lesezeichenleiste des Browsers ausblenden oder herauszoomen.\n' +
   'Nun werden die hier vorkommenden verschiedenen Variationen der Syntax einer SQL Anfrage erläutert:';
 const änderung1: string =
@@ -44,7 +44,7 @@ const code2: string =
   'SELECT *\n' +
   'FROM   Tabelle1\n' +
   '       ⋈ (Tabelle1.attribut1 = Tabelle2.attribut2)\n' +
-  '       Tabelle2\n';
+  '       Tabelle2;\n';
 const ausleitung: string =
   '\nDiese 2 Variationen bezüglich der Umbenennung als auch die 2 Variationen bezüglich des Verbundsoperators können in jeder Kombination auftreten.' +
   '\nDaraus resultieren 4 mögliche Aufgabentypen, die Ihnen begegnen können.' +

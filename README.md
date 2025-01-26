@@ -13,7 +13,7 @@ The email address can be found below as well.
 Experiment: [HTML-Preview
 link to start the experiement](https://htmlpreview.github.io/?https://raw.githubusercontent.com/MasterSeyf/SQL-Code-Evaluator/master/dist/index.html)
 
-Email adress: Seyfullah.Davulcu@Stud.uni-due.de
+Email address: Seyfullah.Davulcu@Stud.uni-due.de
 
 # Syntaxvariants
 
@@ -39,3 +39,4 @@ Email adress: Seyfullah.Davulcu@Stud.uni-due.de
 - Der Test kann durch HTML-Prewview im Browser durchgeführt werden
 - Style
 - More Style
+- Even more Style
