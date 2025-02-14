@@ -10,6 +10,7 @@ import { IVariantParameters, translateVariants } from '../walloftext/VariantTran
 import { ITitleParameters, titleGenerator } from '../walloftext/Title';
 import Seeder from '../tasks/Seeder';
 import Task from '../tasks/Task';
+import Semaphore from '../tasks/Semaphore.ts';
 
 export interface TaskUiProps {
   fileName: string;
@@ -132,6 +133,7 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
   const answerInputRef = useRef<HTMLTextAreaElement>(null);
   const [seeder, _setSeeder] = useState<Seeder>(new Seeder(props.seed));
   const [enterUnlocked, setEnterUnlocked] = useState<boolean>(true);
+  const [taskSemaphore, _setTaskSemaphore] = useState<Semaphore>(new Semaphore());
 
   // Setzt die Kombination an Parameter für die nächste Aufgabe
   async function setParameter(state: TaskUiState) {
@@ -290,42 +292,46 @@ export default function TaskUi(props: TaskUiProps): JSX.Element {
   }
 
   async function stepForward() {
-    let answer = ''; //Not sure if we need this as a global
-    let process = true;
-    const state = new TaskUiState(uiState);
+    if (!taskSemaphore.taskIsRunning) {
+      taskSemaphore.taskIsRunning = true;
+      let answer = ''; //Not sure if we need this as a global
+      let process = true;
+      const state = new TaskUiState(uiState);
 
-    if (state.finished) {
-      measurement.saveFile();
-      return;
-    }
+      if (state.finished) {
+        measurement.saveFile();
+        return;
+      }
 
-    // Verarbeitet die abgegebene Antwort
-    if (state.isTask) {
-      const input = answerInputRef.current?.value ?? '';
-      // Wenn die abgegebene Antwort Zeilenumbrüche hat, werden diese entfernt
-      answer = input.replaceAll(/\r|\n/g, '');
+      // Verarbeitet die abgegebene Antwort
+      if (state.isTask) {
+        const input = answerInputRef.current?.value ?? '';
+        // Wenn die abgegebene Antwort Zeilenumbrüche hat, werden diese entfernt
+        answer = input.replaceAll(/\r|\n/g, '');
 
-      // Checkt, ob die Lösung richtig war (Nur im Tutorial)
-      if (!state.isTutorialDone) {
-        // Falls die Lösung richtig war, wird das Textfeld grün gefärbt
-        if (answer === state.lineNumber || answer === '-') {
-          state.answerInputClassName = 'answerCorrect';
-        } else {
-          // Falls die Lösung falsch war, wird das Textfeld rot gefärbt, der getrimmte String ins Abgabefeld geschrieben und die Funktion verlassen
-          state.answerInputClassName = 'answerIncorrect';
-          if (answerInputRef.current) {
-            answerInputRef.current.value = answer;
+        // Checkt, ob die Lösung richtig war (Nur im Tutorial)
+        if (!state.isTutorialDone) {
+          // Falls die Lösung richtig war, wird das Textfeld grün gefärbt
+          if (answer === state.lineNumber || answer === '-') {
+            state.answerInputClassName = 'answerCorrect';
+          } else {
+            // Falls die Lösung falsch war, wird das Textfeld rot gefärbt, der getrimmte String ins Abgabefeld geschrieben und die Funktion verlassen
+            state.answerInputClassName = 'answerIncorrect';
+            if (answerInputRef.current) {
+              answerInputRef.current.value = answer;
+            }
+            process = false;
           }
-          process = false;
         }
       }
-    }
 
-    if (process) {
-      await stepForward2(answer, state);
-    }
+      if (process) {
+        await stepForward2(answer, state);
+      }
 
-    setUiState(state);
+      setUiState(state);
+      taskSemaphore.taskIsRunning = false;
+    }
   }
 
   // Im Einführungstext wird nur weitergesteppt, wenn man Steuerung-Enter (oder für macs Command-Enter) drückt
