@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import CodeViewer from './CodeViewer';
 import Measurement from '../tasks/Measurement';
-import Introduction from '../walloftext/Introduction.ts';
+import Introduction from '../walloftext/Introduction_German.ts';
+// @ts-expect-error - Alternative when English shall be used
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import Introduction_English from '../walloftext/Introduction_English.ts';
 import PauseTextInitial from '../walloftext/PauseTextInitial.ts';
-import PauseTextDefault from '../walloftext/PauseTextDefault.ts';
+import PauseTextDefault from '../walloftext/PauseTextDefault_German.ts';
 import PauseTextTutorialCompletion from '../walloftext/PauseTextTutorialCompletion.ts';
 import Conclusion from '../walloftext/Conclusion';
 import { IVariantParameters, translateVariants } from '../walloftext/VariantTranslator';
